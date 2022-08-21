@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: demo-cronjob
+spec:
+  template:
+    spec:
+      volumes:
+        - name: volume-configmap
+          configMap:
+            name: config-demo-cronjob
+      containers:
+        - name: demo-job
+          image: phatcahcrin/demo-cronjob:dev
+          env:
+            - name: TEST
+              value: flag
+          volumeMounts:
+            - name: volume-configmap
+              mountPath: /home
+      restartPolicy: Never
+  backoffLimit: 4

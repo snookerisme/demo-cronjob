@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-demo-cronjob
+data:
+  application.yml: |+
+    config:
+      test:
+        flag: ${TEST}
+        data: 1103701936363
